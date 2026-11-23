@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the animated terminal SVG used as the profile README hero.
 
-The left panel is a vector profile card (hexagon "SM" badge). Two themes are emitted from one
+The left panel is a pixel-art portrait (see make_portrait.py). Two themes are emitted from one
 source of truth so layout and timing can never drift apart.
 
     python3 tools/build_terminal_svg.py
@@ -60,55 +60,41 @@ def esc(t):
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-# ── profile card (left panel) ───────────────────────────────────────────────
-# Drawn as real SVG shapes, not text art: block/box glyphs never tile cleanly
-# at this line height. The terminal reserves CARD_ROWS blank rows for it.
-CARD_COLS = 33                    # columns of space reserved for the card
-CARD_ROWS = 13
+# ── pixel portrait (left panel) ─────────────────────────────────────────────
+# tools/portrait.txt is a pixel grid made by make_portrait.py: "." = empty,
+# "1".."5" = tone, dark to light. Drawn as squares on a dark emerald screen
+# (same in both themes, so the portrait keeps its contrast in light mode).
+CARD_COLS = 33                    # text columns reserved for the panel
+CARD_ROWS = 16                    # text rows reserved for the panel
 CARD_W = 206                      # px; fits CARD_COLS even on narrow fonts
-CHIPS = ["laravel", "php", "mysql"]
+SCREEN = "#04140F"
+TONES = {"1": "#155A41", "2": "#1F8058", "3": "#2BB57D",
+         "4": "#5BE3A6", "5": "#D1FAE5"}
 
 
-def card_svg(C, theme, x, y):
-    w, h = CARD_W, CARD_ROWS * LH - 6
-    cx = x + w / 2
-    hy, r = y + 54, 38
-    pts = " ".join(f"{cx + r * dx:.1f},{hy + r * dy:.1f}" for dx, dy in
-                   ((0, -1), (.866, -.5), (.866, .5), (0, 1), (-.866, .5), (-.866, -.5)))
-    inner = " ".join(f"{cx + (r - 7) * dx:.1f},{hy + (r - 7) * dy:.1f}" for dx, dy in
-                     ((0, -1), (.866, -.5), (.866, .5), (0, 1), (-.866, .5), (-.866, -.5)))
-    glow = .22 if theme == "dark" else .14
-    o = [
-        f'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
-        f'<stop offset="0" stop-color="{C["olive"]}" stop-opacity="{glow}"/>'
-        f'<stop offset="1" stop-color="{C["rust"]}" stop-opacity="{glow/4}"/>'
-        f'</linearGradient></defs>',
-        f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="10" '
-        f'fill="{C["bar"]}" stroke="{C["edge"]}" stroke-width="1"/>',
-        f'<polygon points="{pts}" fill="url(#g)" stroke="{C["rust"]}" stroke-width="1.6"/>',
-        f'<polygon points="{inner}" fill="none" stroke="{C["rust"]}" '
-        f'stroke-opacity=".35" stroke-width="1" stroke-dasharray="2 3"/>',
-        f'<text x="{cx}" y="{hy + 9}" text-anchor="middle" font-size="25" '
-        f'font-weight="700" letter-spacing="1" fill="{C["rust"]}">SM</text>',
-        f'<text x="{cx}" y="{y + 116}" text-anchor="middle" font-size="14" '
-        f'font-weight="700" fill="{C["fg"]}">Sudip Magar</text>',
-        f'<text x="{cx}" y="{y + 132}" text-anchor="middle" font-size="9" '
-        f'letter-spacing="2.2" fill="{C["dim"]}">LARAVEL DEVELOPER</text>',
-    ]
-    cw = [len(c) * 6 + 14 for c in CHIPS]
-    gap = 6
-    cxp = cx - (sum(cw) + gap * (len(CHIPS) - 1)) / 2
-    for c, wc in zip(CHIPS, cw):
-        o.append(f'<rect x="{cxp:.1f}" y="{y + 143}" width="{wc}" height="16" rx="8" '
-                 f'fill="none" stroke="{C["olive"]}" stroke-opacity=".6"/>')
-        o.append(f'<text x="{cxp + wc/2:.1f}" y="{y + 154.5}" text-anchor="middle" '
-                 f'font-size="9.5" fill="{C["olive"]}">{c}</text>')
-        cxp += wc + gap
-    o.append(f'<circle cx="{cx - 52}" cy="{y + 179}" r="3.2" fill="{C["rust"]}"/>')
-    o.append(f'<circle cx="{cx - 52}" cy="{y + 179}" r="6" fill="none" '
-             f'stroke="{C["rust"]}" stroke-opacity=".35"/>')
-    o.append(f'<text x="{cx - 42}" y="{y + 182.5}" font-size="10" '
-             f'fill="{C["dim"]}">open to freelance work</text>')
+def portrait_svg(C, x, y):
+    grid = [r for r in (ROOT / "tools" / "portrait.txt")
+            .read_text(encoding="utf-8").splitlines() if r]
+    w, h = CARD_W, CARD_ROWS * LH - 8
+    pad = 8
+    cell = min((w - 2 * pad) / len(grid[0]), (h - 2 * pad) / len(grid))
+    ox = x + (w - cell * len(grid[0])) / 2
+    oy = y + h - pad - cell * len(grid)          # sit on the bottom edge
+    gap = max(0.6, cell * 0.12)
+    o = [f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="10" '
+         f'fill="{SCREEN}" stroke="{C["edge"]}" stroke-width="1"/>']
+    # faint grid behind the subject, like the dots of an LED panel
+    o.append(f'<g fill="#0A1F18">' + "".join(
+        f'<rect x="{ox + c*cell:.1f}" y="{oy + r*cell:.1f}" width="{cell-gap:.1f}" '
+        f'height="{cell-gap:.1f}"/>'
+        for r in range(len(grid)) for c in range(len(grid[0])) if grid[r][c] == ".")
+        + "</g>")
+    for tone, col in TONES.items():
+        cells = "".join(
+            f'<rect x="{ox + c*cell:.1f}" y="{oy + r*cell:.1f}" '
+            f'width="{cell-gap:.1f}" height="{cell-gap:.1f}"/>'
+            for r, row in enumerate(grid) for c, ch in enumerate(row) if ch == tone)
+        o.append(f'<g fill="{col}">{cells}</g>')
     return o
 
 
@@ -211,7 +197,7 @@ def render(theme):
     out.append(f'<text x="{W/2}" y="{BAR_H/2 + 4}" text-anchor="middle" '
                f'fill="{C["dim"]}" font-size="11">sudip@github — zsh</text>')
 
-    out += card_svg(C, theme, PAD_X, TOP + 2 * LH - FS - 2)
+    out += portrait_svg(C, PAD_X, TOP + 2 * LH - FS - 2)
 
     # One <text> per line with coloured <tspan>s, so the browser advances each
     # glyph itself. Positioning runs by an assumed char width drifts on fonts
