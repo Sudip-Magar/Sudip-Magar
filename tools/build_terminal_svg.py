@@ -39,19 +39,19 @@ THEMES = {
     },
 }
 
-PROMPT = [("pratham@github", "olive"), (":", "dim"), ("~", "rust"), ("$ ", "dim")]
+PROMPT = [("sudip@github", "olive"), (":", "dim"), ("~", "rust"), ("$ ", "dim")]
 
 INFO = [
-    ("host",     "pratt778"),
+    ("host",     "Sudip-Magar"),
     ("RULE",     ""),
-    ("role",     "mobile app developer"),
-    ("shell",    "dart · python · lua"),
-    ("editor",   "nvim — config never finished"),
-    ("wm",       "flutter, widgets all the way down"),
-    ("pkgs",     "1 published to pub.dev"),
-    ("db",       "sqlite · mysql"),
+    ("role",     "laravel developer"),
+    ("shell",    "php · javascript"),
+    ("backend",  "laravel · livewire · mysql"),
+    ("frontend", "react · tailwind · bootstrap"),
+    ("design",   "figma · photoshop · illustrator"),
+    ("degree",   "BCA, tribhuvan university (2026)"),
     ("", ""),
-    ("uname",    "always compiling something"),
+    ("uname",    "php artisan serve, always"),
 ]
 
 
@@ -85,7 +85,7 @@ def build_lines():
             if k == "RULE":
                 segs.append(("─" * 38, "rule"))
             elif k == "host":
-                segs.append(("pratham", "rust"))
+                segs.append(("sudip", "rust"))
                 segs.append(("@", "dim"))
                 segs.append(("github", "amber"))
             elif k:
@@ -104,24 +104,26 @@ def build_lines():
 
     blank()
     cmd("cat about.txt")
-    body("mobile app developer. flutter and dart every day, with the")
-    body("python / django backends that sit behind them. built my own")
-    body("portfolio in next.js because i wanted to see how it felt.")
+    body("laravel developer from nepal. i build web apps end to end —")
+    body("laravel + mysql on the backend, react / tailwind on the front.")
+    body("BCA graduate — milton international college, TU (2026).")
     blank()
-    body("happy to talk flutter architecture, or publishing dart packages.")
+    body("open to freelance work. say hi: sudeepmagar730@gmail.com")
 
     blank()
     cmd("ls ~/stack")
-    body("flutter   dart      kotlin    git       linux     nvim", "olive")
-    body("sqlite    mysql     python    django    flask", "olive")
-    body("javascript typescript react   redux     next.js   tailwind", "olive")
+    body("php        laravel    livewire   mysql       reverb", "olive")
+    body("javascript alpine.js  react      tailwind    bootstrap", "olive")
+    body("git        github     figma      photoshop   jquery", "olive")
 
     blank()
-    cmd("cat projects/nepali_transliteration")
-    body("offline romanized → nepali transliteration for flutter.", "amber")
-    body("type 'kathmandu', get 'काठमाडौं'. no network. ever.", "amber")
-    lines.append([("  → ", "dim"),
-                  ("pub.dev/packages/nepali_transliteration", "rust")])
+    cmd("ls ~/projects")
+    body("sajha-auction     second-hand marketplace + live auctions", "amber")
+    body("                  proxy bids, anti-sniping, real-time (reverb)", "dim")
+    body("connectx          social media app", "amber")
+    body("multivendor-ecom  multi-vendor e-commerce store", "amber")
+    body("scms-module       livewire module with role permissions", "amber")
+    lines.append([("  → ", "dim"), ("github.com/Sudip-Magar", "rust")])
 
     blank()
     lines.append(list(PROMPT))
@@ -158,7 +160,7 @@ def render(theme):
         out.append(f'<circle cx="{22 + i*17}" cy="{BAR_H/2}" r="4.8" '
                    f'fill="{C[col]}"/>')
     out.append(f'<text x="{W/2}" y="{BAR_H/2 + 4}" text-anchor="middle" '
-               f'fill="{C["dim"]}" font-size="11">pratham@github — zsh</text>')
+               f'fill="{C["dim"]}" font-size="11">sudip@github — zsh</text>')
 
     for idx, segs in enumerate(lines):
         y = TOP + idx * LH

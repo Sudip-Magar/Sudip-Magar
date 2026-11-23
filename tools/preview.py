@@ -14,7 +14,7 @@ from pathlib import Path
 import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
-RAW = "https://raw.githubusercontent.com/pratt778/pratt778/main/"
+RAW = "https://raw.githubusercontent.com/Sudip-Magar/Sudip-Magar/main/"
 
 CSS = """
 :root{color-scheme:dark}
