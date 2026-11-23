@@ -24,18 +24,20 @@ GAP = 4             # columns between portrait and info
 MONO = ("ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,"
         "'DejaVu Sans Mono','Liberation Mono',monospace")
 
+# Emerald palette. Key names are roles, not hues:
+#   rust = primary accent, amber = secondary accent, olive = labels/prompt.
 THEMES = {
     "dark": {
-        "bg": "#12100B", "bar": "#1D1912", "edge": "#332C20",
-        "fg": "#CFC7B0", "dim": "#7A7160", "rule": "#332C20",
-        "rust": "#DB6B34", "amber": "#E8A33D", "olive": "#8A9A5B",
-        "ink0": "#E4DCC6", "ink1": "#D6CDB4", "ink2": "#BFB49A",
+        "bg": "#04140F", "bar": "#0A2119", "edge": "#14382B",
+        "fg": "#D1FAE5", "dim": "#5F8B7A", "rule": "#14382B",
+        "rust": "#34D399", "amber": "#FCD34D", "olive": "#6EE7B7",
+        "ink0": "#A7F3D0", "ink1": "#6EE7B7", "ink2": "#34D399",
     },
     "light": {
-        "bg": "#F6F1E4", "bar": "#EAE2CF", "edge": "#D2C8AE",
-        "fg": "#2E2A20", "dim": "#6E6653", "rule": "#D2C8AE",
-        "rust": "#B4551F", "amber": "#8A5E10", "olive": "#5A6838",
-        "rust_": "", "ink0": "#8A5E10", "ink1": "#B4551F", "ink2": "#5C4326",
+        "bg": "#F0FDF7", "bar": "#D1FAE5", "edge": "#A7F3D0",
+        "fg": "#06281D", "dim": "#4D7A69", "rule": "#A7F3D0",
+        "rust": "#047857", "amber": "#92400E", "olive": "#065F46",
+        "ink0": "#065F46", "ink1": "#047857", "ink2": "#059669",
     },
 }
 
@@ -118,11 +120,14 @@ def build_lines():
 
     blank()
     cmd("ls ~/projects")
-    body("sajha-auction     second-hand marketplace + live auctions", "amber")
-    body("                  proxy bids, anti-sniping, real-time (reverb)", "dim")
-    body("connectx          social media app", "amber")
-    body("multivendor-ecom  multi-vendor e-commerce store", "amber")
-    body("scms-module       livewire module with role permissions", "amber")
+    def proj(name, desc, key="fg"):
+        lines.append([("  " + name.ljust(18), "rust"), (desc, key)])
+
+    proj("sajha-auction", "second-hand marketplace + live auctions")
+    proj("", "proxy bids, anti-sniping, real-time (reverb)", "dim")
+    proj("connectx", "social media app")
+    proj("multivendor-ecom", "multi-vendor e-commerce store")
+    proj("scms-module", "livewire module with role permissions")
     lines.append([("  → ", "dim"), ("github.com/Sudip-Magar", "rust")])
 
     blank()
@@ -162,27 +167,21 @@ def render(theme):
     out.append(f'<text x="{W/2}" y="{BAR_H/2 + 4}" text-anchor="middle" '
                f'fill="{C["dim"]}" font-size="11">sudip@github — zsh</text>')
 
+    # One <text> per line with coloured <tspan>s, so the browser advances each
+    # glyph itself. Positioning runs by an assumed char width drifts on fonts
+    # whose advance isn't exactly 0.6em (e.g. Consolas), leaving odd gaps.
     for idx, segs in enumerate(lines):
         y = TOP + idx * LH
-        delay = round(idx * step, 3)
-        runs = []
-        col = 0
-        for t, key in segs:
-            if t:
-                runs.append(
-                    f'<text x="{PAD_X + col*CW:.1f}" y="{y:.1f}" '
-                    f'fill="{C.get(key, C["fg"])}" xml:space="preserve">'
-                    f'{esc(t)}</text>')
-            col += len(t)
-        if runs:
-            out.append("<g>" + "".join(runs) + "</g>")
-
-    cur_col = sum(len(t) for t, _ in lines[-1])
-    out.append(
-        f'<rect class="cur" x="{PAD_X + cur_col*CW:.1f}" '
-        f'y="{TOP + (len(lines)-1)*LH - FS + 2.5:.1f}" width="{CW:.1f}" '
-        f'height="{FS}" fill="{C["rust"]}" '
-        f'style="animation-delay:{round(len(lines)*step,3)}s"/>')
+        last = idx == len(lines) - 1
+        spans = "".join(
+            f'<tspan fill="{C.get(key, C["fg"])}">{esc(t)}</tspan>'
+            for t, key in segs if t)
+        if last:
+            spans += (f'<tspan class="cur" fill="{C["rust"]}" '
+                      f'style="animation-delay:{round(len(lines)*0.055,3)}s">█</tspan>')
+        if spans:
+            out.append(f'<text x="{PAD_X}" y="{y:.1f}" xml:space="preserve">'
+                       f'{spans}</text>')
 
     out.append("</svg>")
     return "\n".join(out)
