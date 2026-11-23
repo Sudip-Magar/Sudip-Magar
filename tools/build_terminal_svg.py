@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Build the animated terminal SVG used as the profile README hero.
 
-The portrait in `portrait.txt` is shaded ASCII art derived from the avatar
-(density-mapped luminance, not hand-drawn). Two themes are emitted from one
+The left panel is a vector profile card (hexagon "SM" badge). Two themes are emitted from one
 source of truth so layout and timing can never drift apart.
 
     python3 tools/build_terminal_svg.py
@@ -61,12 +60,60 @@ def esc(t):
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+# ── profile card (left panel) ───────────────────────────────────────────────
+# Drawn as real SVG shapes, not text art: block/box glyphs never tile cleanly
+# at this line height. The terminal reserves CARD_ROWS blank rows for it.
+CARD_COLS = 33                    # columns of space reserved for the card
+CARD_ROWS = 13
+CARD_W = 206                      # px; fits CARD_COLS even on narrow fonts
+CHIPS = ["laravel", "php", "mysql"]
+
+
+def card_svg(C, theme, x, y):
+    w, h = CARD_W, CARD_ROWS * LH - 6
+    cx = x + w / 2
+    hy, r = y + 54, 38
+    pts = " ".join(f"{cx + r * dx:.1f},{hy + r * dy:.1f}" for dx, dy in
+                   ((0, -1), (.866, -.5), (.866, .5), (0, 1), (-.866, .5), (-.866, -.5)))
+    inner = " ".join(f"{cx + (r - 7) * dx:.1f},{hy + (r - 7) * dy:.1f}" for dx, dy in
+                     ((0, -1), (.866, -.5), (.866, .5), (0, 1), (-.866, .5), (-.866, -.5)))
+    glow = .22 if theme == "dark" else .14
+    o = [
+        f'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
+        f'<stop offset="0" stop-color="{C["olive"]}" stop-opacity="{glow}"/>'
+        f'<stop offset="1" stop-color="{C["rust"]}" stop-opacity="{glow/4}"/>'
+        f'</linearGradient></defs>',
+        f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="10" '
+        f'fill="{C["bar"]}" stroke="{C["edge"]}" stroke-width="1"/>',
+        f'<polygon points="{pts}" fill="url(#g)" stroke="{C["rust"]}" stroke-width="1.6"/>',
+        f'<polygon points="{inner}" fill="none" stroke="{C["rust"]}" '
+        f'stroke-opacity=".35" stroke-width="1" stroke-dasharray="2 3"/>',
+        f'<text x="{cx}" y="{hy + 9}" text-anchor="middle" font-size="25" '
+        f'font-weight="700" letter-spacing="1" fill="{C["rust"]}">SM</text>',
+        f'<text x="{cx}" y="{y + 116}" text-anchor="middle" font-size="14" '
+        f'font-weight="700" fill="{C["fg"]}">Sudip Magar</text>',
+        f'<text x="{cx}" y="{y + 132}" text-anchor="middle" font-size="9" '
+        f'letter-spacing="2.2" fill="{C["dim"]}">LARAVEL DEVELOPER</text>',
+    ]
+    cw = [len(c) * 6 + 14 for c in CHIPS]
+    gap = 6
+    cxp = cx - (sum(cw) + gap * (len(CHIPS) - 1)) / 2
+    for c, wc in zip(CHIPS, cw):
+        o.append(f'<rect x="{cxp:.1f}" y="{y + 143}" width="{wc}" height="16" rx="8" '
+                 f'fill="none" stroke="{C["olive"]}" stroke-opacity=".6"/>')
+        o.append(f'<text x="{cxp + wc/2:.1f}" y="{y + 154.5}" text-anchor="middle" '
+                 f'font-size="9.5" fill="{C["olive"]}">{c}</text>')
+        cxp += wc + gap
+    o.append(f'<circle cx="{cx - 52}" cy="{y + 179}" r="3.2" fill="{C["rust"]}"/>')
+    o.append(f'<circle cx="{cx - 52}" cy="{y + 179}" r="6" fill="none" '
+             f'stroke="{C["rust"]}" stroke-opacity=".35"/>')
+    o.append(f'<text x="{cx - 42}" y="{y + 182.5}" font-size="10" '
+             f'fill="{C["dim"]}">open to freelance work</text>')
+    return o
+
+
 def build_lines():
-    art = (ROOT / "tools" / "portrait.txt").read_text(encoding="utf-8")
-    art_rows = [r.rstrip("\n") for r in art.split("\n")]
-    while art_rows and not art_rows[-1].strip():
-        art_rows.pop()
-    art_w = max(len(r) for r in art_rows)
+    art_rows = [[(" " * CARD_COLS, "fg")] for _ in range(CARD_ROWS)]
 
     lines = []
     lines.append(PROMPT + [("neofetch", "fg")])
@@ -76,10 +123,7 @@ def build_lines():
     info_start = 2                      # vertical offset of info block
 
     for i, row in enumerate(art_rows):
-        # portrait shading: three bands so the ink reads with depth
-        band = "ink0" if i < len(art_rows) * 0.34 else (
-            "ink1" if i < len(art_rows) * 0.7 else "ink2")
-        segs = [(row.ljust(art_w + GAP), band)]
+        segs = list(row) + [(" " * GAP, "fg")]
 
         j = i - info_start
         if 0 <= j < len(INFO):
@@ -166,6 +210,8 @@ def render(theme):
                    f'fill="{C[col]}"/>')
     out.append(f'<text x="{W/2}" y="{BAR_H/2 + 4}" text-anchor="middle" '
                f'fill="{C["dim"]}" font-size="11">sudip@github — zsh</text>')
+
+    out += card_svg(C, theme, PAD_X, TOP + 2 * LH - FS - 2)
 
     # One <text> per line with coloured <tspan>s, so the browser advances each
     # glyph itself. Positioning runs by an assumed char width drifts on fonts

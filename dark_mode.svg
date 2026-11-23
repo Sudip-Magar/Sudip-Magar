@@ -1,49 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="660" height="781" viewBox="0 0 660 781" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11">
+<svg xmlns="http://www.w3.org/2000/svg" width="588" height="657" viewBox="0 0 588 657" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="11">
 <style>@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}.cur{animation:blink 1.05s step-end infinite}@media(prefers-reduced-motion:reduce){.cur{animation:none}}</style>
-<rect x="1" y="1" width="658" height="779" rx="11" fill="#04140F" stroke="#14382B" stroke-width="1.5"/>
-<path d="M1 12 a11 11 0 0 1 11-11 h636 a11 11 0 0 1 11 11 v22 h-658 z" fill="#0A2119"/>
-<line x1="1" y1="34" x2="659" y2="34" stroke="#14382B" stroke-width="1.5"/>
+<rect x="1" y="1" width="586" height="655" rx="11" fill="#04140F" stroke="#14382B" stroke-width="1.5"/>
+<path d="M1 12 a11 11 0 0 1 11-11 h564 a11 11 0 0 1 11 11 v22 h-586 z" fill="#0A2119"/>
+<line x1="1" y1="34" x2="587" y2="34" stroke="#14382B" stroke-width="1.5"/>
 <circle cx="22" cy="17.0" r="4.8" fill="#34D399"/>
 <circle cx="39" cy="17.0" r="4.8" fill="#FCD34D"/>
 <circle cx="56" cy="17.0" r="4.8" fill="#6EE7B7"/>
-<text x="330.0" y="21.0" text-anchor="middle" fill="#5F8B7A" font-size="11">sudip@github — zsh</text>
+<text x="294.0" y="21.0" text-anchor="middle" fill="#5F8B7A" font-size="11">sudip@github — zsh</text>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6EE7B7" stop-opacity="0.22"/><stop offset="1" stop-color="#34D399" stop-opacity="0.055"/></linearGradient></defs>
+<rect x="26" y="82.0" width="206" height="195.5" rx="10" fill="#0A2119" stroke="#14382B" stroke-width="1"/>
+<polygon points="129.0,98.0 161.9,117.0 161.9,155.0 129.0,174.0 96.1,155.0 96.1,117.0" fill="url(#g)" stroke="#34D399" stroke-width="1.6"/>
+<polygon points="129.0,105.0 155.8,120.5 155.8,151.5 129.0,167.0 102.2,151.5 102.2,120.5" fill="none" stroke="#34D399" stroke-opacity=".35" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="129.0" y="145.0" text-anchor="middle" font-size="25" font-weight="700" letter-spacing="1" fill="#34D399">SM</text>
+<text x="129.0" y="198.0" text-anchor="middle" font-size="14" font-weight="700" fill="#D1FAE5">Sudip Magar</text>
+<text x="129.0" y="214.0" text-anchor="middle" font-size="9" letter-spacing="2.2" fill="#5F8B7A">LARAVEL DEVELOPER</text>
+<rect x="57.0" y="225.0" width="56" height="16" rx="8" fill="none" stroke="#6EE7B7" stroke-opacity=".6"/>
+<text x="85.0" y="236.5" text-anchor="middle" font-size="9.5" fill="#6EE7B7">laravel</text>
+<rect x="119.0" y="225.0" width="32" height="16" rx="8" fill="none" stroke="#6EE7B7" stroke-opacity=".6"/>
+<text x="135.0" y="236.5" text-anchor="middle" font-size="9.5" fill="#6EE7B7">php</text>
+<rect x="157.0" y="225.0" width="44" height="16" rx="8" fill="none" stroke="#6EE7B7" stroke-opacity=".6"/>
+<text x="179.0" y="236.5" text-anchor="middle" font-size="9.5" fill="#6EE7B7">mysql</text>
+<circle cx="77.0" cy="261.0" r="3.2" fill="#34D399"/>
+<circle cx="77.0" cy="261.0" r="6" fill="none" stroke="#34D399" stroke-opacity=".35"/>
+<text x="87.0" y="264.5" font-size="10" fill="#5F8B7A">open to freelance work</text>
 <text x="26" y="64.0" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan fill="#D1FAE5">neofetch</tspan></text>
-<text x="26" y="95.0" xml:space="preserve"><tspan fill="#A7F3D0">                   ..:---+*                     </tspan></text>
-<text x="26" y="110.5" xml:space="preserve"><tspan fill="#A7F3D0">                    .:--::....                  </tspan></text>
-<text x="26" y="126.0" xml:space="preserve"><tspan fill="#A7F3D0">                .:. .::..   ...:-               </tspan><tspan fill="#34D399">sudip</tspan><tspan fill="#5F8B7A">@</tspan><tspan fill="#FCD34D">github</tspan></text>
-<text x="26" y="141.5" xml:space="preserve"><tspan fill="#A7F3D0">                   ::..::=++=-:..:              </tspan><tspan fill="#14382B">──────────────────────────────────────</tspan></text>
-<text x="26" y="157.0" xml:space="preserve"><tspan fill="#A7F3D0">                  .--+*#%@@%#**=:.:             </tspan><tspan fill="#6EE7B7">role       </tspan><tspan fill="#D1FAE5">laravel developer</tspan></text>
-<text x="26" y="172.5" xml:space="preserve"><tspan fill="#A7F3D0">                 -*#%@@@@@@@%##*-..:            </tspan><tspan fill="#6EE7B7">shell      </tspan><tspan fill="#D1FAE5">php · javascript</tspan></text>
-<text x="26" y="188.0" xml:space="preserve"><tspan fill="#A7F3D0">             ..:=*%@@@@@@%%#*++**-.:            </tspan><tspan fill="#6EE7B7">backend    </tspan><tspan fill="#D1FAE5">laravel · livewire · mysql</tspan></text>
-<text x="26" y="203.5" xml:space="preserve"><tspan fill="#A7F3D0">         .  =+===+==+#@@#+=====+#+.=-           </tspan><tspan fill="#6EE7B7">frontend   </tspan><tspan fill="#D1FAE5">react · tailwind · bootstrap</tspan></text>
-<text x="26" y="219.0" xml:space="preserve"><tspan fill="#6EE7B7">         = .+++====**#@@%%%**#%%#*-#-           </tspan><tspan fill="#6EE7B7">design     </tspan><tspan fill="#D1FAE5">figma · photoshop · illustrator</tspan></text>
-<text x="26" y="234.5" xml:space="preserve"><tspan fill="#6EE7B7">         =+:=*#%%%@@%*#@##%@@@@@%*=#            </tspan><tspan fill="#6EE7B7">degree     </tspan><tspan fill="#D1FAE5">BCA, tribhuvan university (2026)</tspan></text>
-<text x="26" y="250.0" xml:space="preserve"><tspan fill="#6EE7B7">         -*--+#%@@@@*++***#%%%@%#+-=            </tspan></text>
-<text x="26" y="265.5" xml:space="preserve"><tspan fill="#6EE7B7">          ::.-+*#@#*++****+++*@*==:.            </tspan><tspan fill="#6EE7B7">uname      </tspan><tspan fill="#D1FAE5">php artisan serve, always</tspan></text>
-<text x="26" y="281.0" xml:space="preserve"><tspan fill="#6EE7B7">           . .-=+%**+==**++#%%#+=::             </tspan></text>
-<text x="26" y="296.5" xml:space="preserve"><tspan fill="#6EE7B7">            :..:=+*#%%%##%@@%*=-.:              </tspan></text>
-<text x="26" y="312.0" xml:space="preserve"><tspan fill="#6EE7B7">              -  .:-==++=+==-.                  </tspan></text>
-<text x="26" y="327.5" xml:space="preserve"><tspan fill="#34D399">                              .-+               </tspan></text>
-<text x="26" y="343.0" xml:space="preserve"><tspan fill="#34D399">           .    --.........:-==+++:             </tspan></text>
-<text x="26" y="358.5" xml:space="preserve"><tspan fill="#34D399">         .     .-======++++++******-  ..        </tspan></text>
-<text x="26" y="374.0" xml:space="preserve"><tspan fill="#34D399">       ....   -+====+++++++****###%%= ...       </tspan></text>
-<text x="26" y="389.5" xml:space="preserve"><tspan fill="#34D399">      ..:.   =#*++++++***######%%%%%%+....      </tspan></text>
-<text x="26" y="405.0" xml:space="preserve"><tspan fill="#34D399">     .::..  :####**#######%%%%%%%%%%%@+.....    </tspan></text>
-<text x="26" y="436.0" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan fill="#D1FAE5">cat about.txt</tspan></text>
-<text x="26" y="451.5" xml:space="preserve"><tspan fill="#D1FAE5">  laravel developer from nepal. i build web apps end to end —</tspan></text>
-<text x="26" y="467.0" xml:space="preserve"><tspan fill="#D1FAE5">  laravel + mysql on the backend, react / tailwind on the front.</tspan></text>
-<text x="26" y="482.5" xml:space="preserve"><tspan fill="#D1FAE5">  BCA graduate — milton international college, TU (2026).</tspan></text>
-<text x="26" y="513.5" xml:space="preserve"><tspan fill="#D1FAE5">  open to freelance work. say hi: sudeepmagar730@gmail.com</tspan></text>
-<text x="26" y="544.5" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan fill="#D1FAE5">ls ~/stack</tspan></text>
-<text x="26" y="560.0" xml:space="preserve"><tspan fill="#6EE7B7">  php        laravel    livewire   mysql       reverb</tspan></text>
-<text x="26" y="575.5" xml:space="preserve"><tspan fill="#6EE7B7">  javascript alpine.js  react      tailwind    bootstrap</tspan></text>
-<text x="26" y="591.0" xml:space="preserve"><tspan fill="#6EE7B7">  git        github     figma      photoshop   jquery</tspan></text>
-<text x="26" y="622.0" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan fill="#D1FAE5">ls ~/projects</tspan></text>
-<text x="26" y="637.5" xml:space="preserve"><tspan fill="#34D399">  sajha-auction     </tspan><tspan fill="#D1FAE5">second-hand marketplace + live auctions</tspan></text>
-<text x="26" y="653.0" xml:space="preserve"><tspan fill="#34D399">                    </tspan><tspan fill="#5F8B7A">proxy bids, anti-sniping, real-time (reverb)</tspan></text>
-<text x="26" y="668.5" xml:space="preserve"><tspan fill="#34D399">  connectx          </tspan><tspan fill="#D1FAE5">social media app</tspan></text>
-<text x="26" y="684.0" xml:space="preserve"><tspan fill="#34D399">  multivendor-ecom  </tspan><tspan fill="#D1FAE5">multi-vendor e-commerce store</tspan></text>
-<text x="26" y="699.5" xml:space="preserve"><tspan fill="#34D399">  scms-module       </tspan><tspan fill="#D1FAE5">livewire module with role permissions</tspan></text>
-<text x="26" y="715.0" xml:space="preserve"><tspan fill="#5F8B7A">  → </tspan><tspan fill="#34D399">github.com/Sudip-Magar</tspan></text>
-<text x="26" y="746.0" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan class="cur" fill="#34D399" style="animation-delay:2.475s">█</tspan></text>
+<text x="26" y="95.0" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan></text>
+<text x="26" y="110.5" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan></text>
+<text x="26" y="126.0" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#34D399">sudip</tspan><tspan fill="#5F8B7A">@</tspan><tspan fill="#FCD34D">github</tspan></text>
+<text x="26" y="141.5" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#14382B">──────────────────────────────────────</tspan></text>
+<text x="26" y="157.0" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#6EE7B7">role       </tspan><tspan fill="#D1FAE5">laravel developer</tspan></text>
+<text x="26" y="172.5" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#6EE7B7">shell      </tspan><tspan fill="#D1FAE5">php · javascript</tspan></text>
+<text x="26" y="188.0" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#6EE7B7">backend    </tspan><tspan fill="#D1FAE5">laravel · livewire · mysql</tspan></text>
+<text x="26" y="203.5" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#6EE7B7">frontend   </tspan><tspan fill="#D1FAE5">react · tailwind · bootstrap</tspan></text>
+<text x="26" y="219.0" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#6EE7B7">design     </tspan><tspan fill="#D1FAE5">figma · photoshop · illustrator</tspan></text>
+<text x="26" y="234.5" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#6EE7B7">degree     </tspan><tspan fill="#D1FAE5">BCA, tribhuvan university (2026)</tspan></text>
+<text x="26" y="250.0" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan></text>
+<text x="26" y="265.5" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan><tspan fill="#6EE7B7">uname      </tspan><tspan fill="#D1FAE5">php artisan serve, always</tspan></text>
+<text x="26" y="281.0" xml:space="preserve"><tspan fill="#D1FAE5">                                 </tspan><tspan fill="#D1FAE5">    </tspan></text>
+<text x="26" y="312.0" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan fill="#D1FAE5">cat about.txt</tspan></text>
+<text x="26" y="327.5" xml:space="preserve"><tspan fill="#D1FAE5">  laravel developer from nepal. i build web apps end to end —</tspan></text>
+<text x="26" y="343.0" xml:space="preserve"><tspan fill="#D1FAE5">  laravel + mysql on the backend, react / tailwind on the front.</tspan></text>
+<text x="26" y="358.5" xml:space="preserve"><tspan fill="#D1FAE5">  BCA graduate — milton international college, TU (2026).</tspan></text>
+<text x="26" y="389.5" xml:space="preserve"><tspan fill="#D1FAE5">  open to freelance work. say hi: sudeepmagar730@gmail.com</tspan></text>
+<text x="26" y="420.5" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan fill="#D1FAE5">ls ~/stack</tspan></text>
+<text x="26" y="436.0" xml:space="preserve"><tspan fill="#6EE7B7">  php        laravel    livewire   mysql       reverb</tspan></text>
+<text x="26" y="451.5" xml:space="preserve"><tspan fill="#6EE7B7">  javascript alpine.js  react      tailwind    bootstrap</tspan></text>
+<text x="26" y="467.0" xml:space="preserve"><tspan fill="#6EE7B7">  git        github     figma      photoshop   jquery</tspan></text>
+<text x="26" y="498.0" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan fill="#D1FAE5">ls ~/projects</tspan></text>
+<text x="26" y="513.5" xml:space="preserve"><tspan fill="#34D399">  sajha-auction     </tspan><tspan fill="#D1FAE5">second-hand marketplace + live auctions</tspan></text>
+<text x="26" y="529.0" xml:space="preserve"><tspan fill="#34D399">                    </tspan><tspan fill="#5F8B7A">proxy bids, anti-sniping, real-time (reverb)</tspan></text>
+<text x="26" y="544.5" xml:space="preserve"><tspan fill="#34D399">  connectx          </tspan><tspan fill="#D1FAE5">social media app</tspan></text>
+<text x="26" y="560.0" xml:space="preserve"><tspan fill="#34D399">  multivendor-ecom  </tspan><tspan fill="#D1FAE5">multi-vendor e-commerce store</tspan></text>
+<text x="26" y="575.5" xml:space="preserve"><tspan fill="#34D399">  scms-module       </tspan><tspan fill="#D1FAE5">livewire module with role permissions</tspan></text>
+<text x="26" y="591.0" xml:space="preserve"><tspan fill="#5F8B7A">  → </tspan><tspan fill="#34D399">github.com/Sudip-Magar</tspan></text>
+<text x="26" y="622.0" xml:space="preserve"><tspan fill="#6EE7B7">sudip@github</tspan><tspan fill="#5F8B7A">:</tspan><tspan fill="#34D399">~</tspan><tspan fill="#5F8B7A">$ </tspan><tspan class="cur" fill="#34D399" style="animation-delay:2.035s">█</tspan></text>
 </svg>
